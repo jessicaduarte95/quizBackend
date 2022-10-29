@@ -4,6 +4,7 @@ const cors = require("cors")
 const Usuarios = require("./Routes/usuarios")
 
 app.use(cors());
+app.use(express.json());
 
 app.use(Usuarios.cadastrarUsuario);
 
