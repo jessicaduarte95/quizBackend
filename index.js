@@ -5,6 +5,8 @@ const Usuarios = require("./Routes/usuarios")
 
 app.use(cors());
 
+app.use(Usuarios.cadastrarUsuario);
+
 app.use(Usuarios.teste);
 
 app.listen(5000, () => {
