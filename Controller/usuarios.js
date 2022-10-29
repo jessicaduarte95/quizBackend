@@ -1,10 +1,10 @@
 const Usuarios = require('../Repository/usuarios')
 
 const cadastrarUsuario = async (req,res) => {
-    const {nome} = req.body;
-    const {email} = req.body;
-    const {senha} = req.body;
-    console.log("Chegou controller", nome, email, senha)
+    const data = req.body;
+    await Usuarios.cadastrarUsuario(data)
+    .then((response) => {res.json(response)})
+    .catch((error) => console.log(error))
 }
 
 module.exports = {
