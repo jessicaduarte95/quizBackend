@@ -3,13 +3,10 @@ const app = express();
 const Usuarios = require('../Controller/usuarios');
 
 const cadastrarUsuario = app.post('/cadastrar', Usuarios.cadastrarUsuario);
-
-
-const teste = app.get("/", (req,res) => {
-    res.send("Teste Rotas")
-});
+const login = app.post('/login', Usuarios.login)
 
 module.exports = {
     teste,
-    cadastrarUsuario
+    cadastrarUsuario,
+    login
 };

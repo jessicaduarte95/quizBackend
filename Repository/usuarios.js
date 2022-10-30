@@ -26,6 +26,25 @@ const cadastrarUsuario = async(data) => {
     }
 }
 
+const login = async(data) => {
+
+     const usuarioExists = await Usuarios.count({
+        where: {
+            email: data.loginEmail,
+            senha: data.loginSenha
+        }
+    }).then((response) => {
+        if(response != 0){
+            return console.log("Dentro do if")
+        }else{
+            return console.log("Dentro do else ")
+        }
+    })
+
+    usuarioExists;
+}
+
 module.exports= {
     cadastrarUsuario,
+    login
 }
