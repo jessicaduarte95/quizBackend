@@ -41,7 +41,11 @@ const login = async(data) => {
         }
     })
 
-    usuarioExists;
+    if(usuarioExists){
+        return true
+    }else{
+        return false
+    }
 }
 
 module.exports= {
