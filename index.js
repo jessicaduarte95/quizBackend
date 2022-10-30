@@ -9,7 +9,6 @@ app.use(express.json());
 app.use(Usuarios.cadastrarUsuario);
 
 
-
 app.listen(5000, () => {
     console.log("Servidor Rodando!")
 })

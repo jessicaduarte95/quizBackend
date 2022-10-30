@@ -6,7 +6,6 @@ const cadastrarUsuario = app.post('/cadastrar', Usuarios.cadastrarUsuario);
 const login = app.post('/login', Usuarios.login)
 
 module.exports = {
-    teste,
     cadastrarUsuario,
     login
 };
