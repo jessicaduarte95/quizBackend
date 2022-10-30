@@ -35,9 +35,9 @@ const login = async(data) => {
         }
     }).then((response) => {
         if(response != 0){
-            return console.log("Dentro do if")
+            return true;
         }else{
-            return console.log("Dentro do else ")
+            return false;
         }
     })
 
