@@ -28,21 +28,23 @@ const cadastrarUsuario = async(data) => {
 
 const login = async(data) => {
 
-     const usuarioExists = await Usuarios.count({
+     const usuarioExists = await Usuarios.findAll({
         where: {
             email: data.loginEmail,
             senha: data.loginSenha
         }
     }).then((response) => {
         if(response != 0){
-            return true;
+            const dataUsuario = response[0].dataValues;
+            return dataUsuario;
         }else{
             return false;
         }
     })
 
     if(usuarioExists){
-        return true
+        const retorno = true;
+        return [retorno, usuarioExists]
     }else{
         return false
     }
