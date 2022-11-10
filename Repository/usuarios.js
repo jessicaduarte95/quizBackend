@@ -17,10 +17,14 @@ const cadastrarUsuario = async(data) => {
     if(emailExist) {
         return true;
     }else{
+        const nome = data.nome.trim();
+        const email = data.email.trim();
+        const senha = data.senha.trim();
+
         await Usuarios.create({
-        nome: data.nome,
-        email: data.email,
-        senha: data.senha
+        nome: nome,
+        email: email,
+        senha: senha
     })
         return false;
     }
@@ -28,10 +32,13 @@ const cadastrarUsuario = async(data) => {
 
 const login = async(data) => {
 
+    const loginEmail = data.loginEmail.trim();
+    const loginSenha = data.loginSenha.trim();
+
      const usuarioExists = await Usuarios.findAll({
         where: {
-            email: data.loginEmail,
-            senha: data.loginSenha
+            email: loginEmail,
+            senha: loginSenha
         }
     }).then((response) => {
         if(response != 0){
