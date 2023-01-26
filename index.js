@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(Usuarios.cadastrarUsuario);
 app.use(Usuarios.login);
 
-app.use(Questoes.obterQuestoes);
+app.use(Questoes.obterPerguntas);
 
 app.listen(5000, () => {
     console.log("Servidor Rodando!")

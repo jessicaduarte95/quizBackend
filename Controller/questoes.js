@@ -1,11 +1,12 @@
 const Questoes = require('../Repository/questoes');
 
-const obterQuestoes = async(req, res) => {
-    await Questoes.obterQuestoes()
+const obterPerguntas = async(req, res) => {
+    const data = req.body;
+    await Questoes.obterPerguntas(data)
     .then((response) => res.json(response))
     .catch((error) => console.log(error))
 };
 
 module.exports = {
-    obterQuestoes
+    obterPerguntas
 }

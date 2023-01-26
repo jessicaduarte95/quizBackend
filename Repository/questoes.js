@@ -1,10 +1,15 @@
 const Questoes = require('../Model/questoes');
 
-const obterQuestoes = async() => {
-    const obter = await Questoes.findAll()
+const obterPerguntas = async(data) => {
+    console.log("Chegou o nivel: ", data.nivel);
+    const obter = await Questoes.findAll({
+        where: {
+            nivel: data.nivel
+        }
+    })
     return obter;
 };
 
 module.exports = {
-    obterQuestoes
+    obterPerguntas
 }
