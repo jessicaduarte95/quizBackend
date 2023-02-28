@@ -11,6 +11,7 @@ app.use(Usuarios.cadastrarUsuario);
 app.use(Usuarios.login);
 
 app.use(Questoes.obterPerguntas);
+app.use(Questoes.obterOpcoes);
 
 app.listen(5000, () => {
     console.log("Servidor Rodando!")

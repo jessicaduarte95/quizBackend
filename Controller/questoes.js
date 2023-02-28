@@ -7,6 +7,17 @@ const obterPerguntas = async(req, res) => {
     .catch((error) => console.log(error))
 };
 
+const obterOpcoes = async(req, res) => {
+    console.log("Controller");
+    const data = req.body;
+    console.log("data: ", data);
+
+    await Questoes.obterOpcoes(data)
+    .then((response) => res.json(response))
+    .catch((error) => console.log(error))
+}
+
 module.exports = {
-    obterPerguntas
+    obterPerguntas,
+    obterOpcoes
 }

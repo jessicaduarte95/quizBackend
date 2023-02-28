@@ -1,7 +1,8 @@
 const Questoes = require('../Model/questoes');
+const Opcoes = require('../Model/opcoes');
 
 const obterPerguntas = async(data) => {
-    console.log("Chegou o nivel: ", data.nivel);
+   
     const obter = await Questoes.findAll({
         where: {
             nivel: data.nivel
@@ -10,6 +11,18 @@ const obterPerguntas = async(data) => {
     return obter;
 };
 
+const obterOpcoes = async(data) => {
+  
+    const opcoes = await Opcoes.findAll({
+        where: {
+            nivel: 1, 
+            idquestao: 1
+        }
+    })
+    return opcoes;
+}
+
 module.exports = {
-    obterPerguntas
+    obterPerguntas,
+    obterOpcoes
 }
