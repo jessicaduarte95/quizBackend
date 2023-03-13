@@ -12,11 +12,13 @@ const obterPerguntas = async(data) => {
 };
 
 const obterOpcoes = async(data) => {
-  
+
+    const opcao = data.perguntaAtual + 1
+    
     const opcoes = await Opcoes.findAll({
         where: {
             nivel: 1, 
-            idquestao: 1
+            idquestao: opcao
         }
     })
     return opcoes;
