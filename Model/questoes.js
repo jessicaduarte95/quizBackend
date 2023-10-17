@@ -1,19 +1,27 @@
-const Sequelize = require('sequelize');
-const database = require('../db')
+const { DataTypes, Model } = require('sequelize');
+const sequelize = require('../db')
 
-const Questoes =  database.define('questoes', {
-    idquestao:{
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true
+class Questoes extends Model { }
+
+Questoes.init(
+    {
+        idquestao: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            allowNull: false,
+            primaryKey: true
+        },
+        nivel: {
+            type: DataTypes.INTEGER
+        },
+        pergunta: {
+            type: DataTypes.STRING
+        }
     },
-    nivel:{
-        type: Sequelize.INTEGER
-    },
-    pergunta:{
-        type: Sequelize.STRING
+    {
+        sequelize,
+        modelName: 'questoes',
     }
-});
+)
 
 module.exports = Questoes;
