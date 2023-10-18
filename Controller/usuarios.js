@@ -1,5 +1,5 @@
 const { response } = require('express');
-const Usuarios = require('../Repository/usuarios')
+const Usuarios = require('../Service/usuarios');
 
 const cadastrarUsuario = async (req,res) => {
     const data = req.body;

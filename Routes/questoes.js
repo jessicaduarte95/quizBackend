@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
-const Questoes = require('../Controller/questoes');
+const QuestionController = require('../Controller/QuestionController');
 
-const obterPerguntas = app.post('/obterPerguntas', Questoes.obterPerguntas);
-const obterOpcoes = app.post('/obterOpcoes', Questoes.obterOpcoes);
+const questionController = new QuestionController();
+
+const obterPerguntas = app.post('/obterPerguntas', questionController.getQuestionsLevel);
+const obterOpcoes = app.post('/obterOpcoes', questionController.getOptionsQuestions);
 
 module.exports = {
     obterPerguntas,
