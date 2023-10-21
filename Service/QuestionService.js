@@ -20,8 +20,15 @@ class QuestionService {
         })
     }
 
-    insertQuestion(data) {
-        console.table({ data })
+    async insertQuestion(data) {
+        const { nivel, pergunta } = data
+        
+        if (data.nivel != '' && data.pergunta != '') {
+            await Question.create({
+                nivel,
+                pergunta
+            })
+        }
         return data
     }
 }
