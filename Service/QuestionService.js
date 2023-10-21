@@ -19,6 +19,11 @@ class QuestionService {
             }
         })
     }
+
+    insertQuestion(data) {
+        console.table({ data })
+        return data
+    }
 }
 
 module.exports = QuestionService;

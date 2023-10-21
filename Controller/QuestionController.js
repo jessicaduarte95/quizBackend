@@ -26,6 +26,18 @@ class QuestionController {
             res.status(500).json({ message: 'Erro ao buscar opções de determinada pergunta!' });
         }
     }
+
+    async insertQuestion(req, res) {
+        const data = req.body;
+
+        try {
+            const insert = await questionService.insertQuestion(data);
+            res.status(200).json(insert);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ message: 'Erro ao inserir uma nova pergunta' })
+        }
+    }
 }
 
 module.exports = QuestionController;
