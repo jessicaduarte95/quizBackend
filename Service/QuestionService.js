@@ -10,19 +10,9 @@ class QuestionService {
         })
     }
 
-    getOptionsQuestions(data) {
-        const option = data.perguntaAtual + 1
-        return Options.findAll({
-            where: {
-                nivel: 1,
-                idquestao: option
-            }
-        })
-    }
-
     async insertQuestion(data) {
         const { id, nivel, pergunta } = data
-        
+
         if (data.nivel != '' && data.pergunta != '') {
             await Question.create({
                 idquestao: id,
