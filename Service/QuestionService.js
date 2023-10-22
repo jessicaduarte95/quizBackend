@@ -21,10 +21,11 @@ class QuestionService {
     }
 
     async insertQuestion(data) {
-        const { nivel, pergunta } = data
+        const { id, nivel, pergunta } = data
         
         if (data.nivel != '' && data.pergunta != '') {
             await Question.create({
+                idquestao: id,
                 nivel,
                 pergunta
             })
