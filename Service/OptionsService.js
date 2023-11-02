@@ -10,6 +10,10 @@ class OptionsService {
             }
         })
     }
+
+    insertOptions(data) {
+        console.log("Chegou: ",data);
+    }
 }
 
 module.exports = OptionsService;

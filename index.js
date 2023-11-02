@@ -15,6 +15,7 @@ app.use(QuestionRouter.obterPerguntas);
 app.use(QuestionRouter.insertQuestion);
 
 app.use(OptionsRouter.getOptions);
+app.use(OptionsRouter.insertOptions);
 
 app.listen(5000, () => {
     console.log("Servidor Rodando!")

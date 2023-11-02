@@ -14,6 +14,18 @@ class OptionsController {
             res.status(500).json({ message: 'Erro ao buscar opções de determinada pergunta!' });
         }
     }
+
+    async insertOptions(req, res) {
+        const data = req.body;
+
+        try {
+            const insert = await optionsService.insertOptions(data);
+            res.status(201).json(insert);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Erro ao inserir opções!' });
+        }
+    }
 }
 
 
