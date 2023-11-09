@@ -25,8 +25,8 @@ describe("User Controller", () => {
     it("Should login successfully", async () => {
         const req = {
             body: {
-                email: "jessicaduarte.95@gmail.com",
-                senha: "123456"
+                loginEmail: "jessicaduarte.95@gmail.com",
+                loginSenha: "123456"
             }
         }
 
@@ -36,7 +36,7 @@ describe("User Controller", () => {
         }
 
         await userController.login(req, res);
-        // expect(res.status).toHaveBeenCalledWith(200);
+        expect(res.status).toHaveBeenCalledWith(200);
     })
 
 
