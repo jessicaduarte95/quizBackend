@@ -8,7 +8,7 @@ class OptionsController {
 
         try {
             const options = await optionsService.getOptionsQuestions(data);
-            res.status(201).json(options);
+            res.status(200).json(options);
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Erro ao buscar opções de determinada pergunta!' });
@@ -20,7 +20,7 @@ class OptionsController {
 
         try {
             const insert = await optionsService.insertOptions(data);
-            res.status(201).json(insert);
+            res.status(200).json(insert);
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Erro ao inserir opções!' });
