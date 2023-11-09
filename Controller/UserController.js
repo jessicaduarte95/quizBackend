@@ -7,11 +7,11 @@ class UserController {
         const data = req.body;
 
         try {
-            const user = await userService.createUser(data);
-            res.status(201).json(user);
+            await userService.createUser(data);
+            return res.status(200).json();
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Erro ao cadastrar usuário!' });
+            return res.status(500).json({ message: 'Erro ao cadastrar usuário!' });
         }
     }
 
@@ -20,7 +20,7 @@ class UserController {
 
         try {
             const loginUser = await userService.login(data)
-            res.status(201).json(loginUser);
+            return res.status(200).json(loginUser);
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Erro ao realizar o login!' });
