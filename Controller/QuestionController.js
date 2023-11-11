@@ -8,7 +8,7 @@ class QuestionController {
 
         try {
             const questions = await questionService.getQuestionsLevel(data);
-            res.status(201).json(questions);
+            res.status(200).json(questions);
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Erro ao buscar perguntas!' });
