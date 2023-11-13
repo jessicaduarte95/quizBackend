@@ -20,7 +20,7 @@ class QuestionService {
                 pergunta
             })
         }
-        return data
+        return;
     }
 }
 

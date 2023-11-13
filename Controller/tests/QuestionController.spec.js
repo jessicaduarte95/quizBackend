@@ -20,23 +20,23 @@ describe("Question Controller", () => {
         
     })
 
-    // it("Should create question successfully", async () => {
-    //     const request = {
-    //         body: {
-    //             idquestao: 14,
-    //             nivel: 2,
-    //             pergunta: "Teste"
-    //         }
-    //     }
+    it("Should create question successfully", async () => {
+        const request = {
+            body: {
+                id: 14,
+                nivel: 2,
+                pergunta: "Teste"
+            }
+        }
 
-    //     const response = {
-    //         status: jest.fn().mockReturnThis(),
-    //         json: jest.fn()
-    //     }
+        const response = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn()
+        }
 
-    //     await questionController.insertQuestion(request, response)
+        await questionController.insertQuestion(request, response);
 
-    //     expect(response.status).toHaveBeenCalledWith(200);
+        expect(response.status).toHaveBeenCalledWith(201);
         
-    // })
+    })
 })
