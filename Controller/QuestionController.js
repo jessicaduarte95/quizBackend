@@ -17,10 +17,9 @@ class QuestionController {
 
     async insertQuestion(req, res) {
         const data = req.body;
-
         try {
-            const insert = await questionService.insertQuestion(data);
-            res.status(200).json(insert);
+            await questionService.insertQuestion(data);
+            res.status(201).json();
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: 'Erro ao inserir uma nova pergunta' })
