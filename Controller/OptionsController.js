@@ -19,8 +19,8 @@ class OptionsController {
         const data = req.body;
 
         try {
-            const insert = await optionsService.insertOptions(data);
-            res.status(200).json(insert);
+            await optionsService.insertOptions(data);
+            res.status(201).json();
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Erro ao inserir opções!' });
