@@ -1,5 +1,5 @@
 const { DataTypes, Model } = require('sequelize');
-const sequelize = require('../db')
+const sequelize = require('../db');
 
 class PontosNivel extends Model {}
 
@@ -26,7 +26,7 @@ PontosNivel.init(
     },
     {
         sequelize,
-        modelName: 'pontosnivel',
+        modelName: 'pontos',
     }
 )
 
