@@ -3,10 +3,23 @@ const sequelize = require('../db');
 
 class OptionsService {
     getOptionsQuestions(data) {
-        const option = data.perguntaAtual + 1
+        let option;
+
+        if (data.level[0].nivel == 1) {
+            option = data.perguntaAtual + 1;
+        } else if(data.level[0].nivel == 2){
+            if(data.perguntaAtual + 1 < 10){
+                let questionOptions = data.perguntaAtual + 1;
+                let number = 1;
+                option = number.toString() + questionOptions.toString();
+            } else {
+                option = 20;
+            }
+        }
+
         return Options.findAll({
             where: {
-                nivel: 1,
+                nivel: data.level[0].nivel,
                 idquestao: option
             }
         })
