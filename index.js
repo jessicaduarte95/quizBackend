@@ -5,6 +5,7 @@ const UserRouter = require("./Routes/UserRouter");
 const QuestionRouter = require("./Routes/QuestionRouter");
 const OptionsRouter = require('./Routes/OptionsRouter');
 const PointsRouter = require('./Routes/PointsRouter');
+const EnableLevelRouter = require('./Routes/EnableLevelRouter');
 
 app.use(cors());
 app.use(express.json());
@@ -19,6 +20,8 @@ app.use(OptionsRouter.getOptions);
 app.use(OptionsRouter.insertOptions);
 
 app.use(PointsRouter.cadastrarPontos);
+
+app.use(EnableLevelRouter.insertEnableLevel);
 
 app.listen(5000, () => {
     console.log("Servidor Rodando!")
