@@ -14,6 +14,18 @@ class EnableLevelController {
             res.status(500).json({ message: 'Erro ao inserir o nível habilitado!' })
         }
     }
+
+    async getEnableLevel(req, res) {
+        const id = req.params.id
+
+        try {
+            const getEnableUserLevel = await enableLevelService.getEnableLevel(id);
+            res.status(200).json(getEnableUserLevel);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ message: 'Erro ao carregar níveis habilitados!' })
+        }
+    }
 }
 
 module.exports = EnableLevelController;
