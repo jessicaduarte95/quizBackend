@@ -24,6 +24,17 @@ class EnableLevelService {
             return;
         }
     }
+
+    async getEnableLevel(id) {
+
+        const getEnableUserLevel = HabilitarNivel.findAll({
+            where: {
+                id
+            }
+        })
+
+        return getEnableUserLevel;
+    }
 }
 
 module.exports = EnableLevelService;
