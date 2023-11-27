@@ -26,7 +26,7 @@ HabilitarNivel.init(
     },
     {
         sequelize,
-        modelName: 'habilitarnivel',
+        modelName: 'habilitarniveis',
     }
 )
 
