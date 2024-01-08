@@ -7,8 +7,8 @@ class EnableLevelController {
         const data = req.body;
 
         try {
-            await enableLevelService.insertEnableLevel(data);
-            res.status(201).json();
+            const enableLevel = await enableLevelService.insertEnableLevel(data);
+            res.status(201).json({enableLevel});
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: 'Erro ao inserir o nível habilitado!' })
