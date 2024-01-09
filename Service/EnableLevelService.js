@@ -1,4 +1,5 @@
 const HabilitarNivel = require('../Model/habilitarnivel');
+const NivelConcluido = require('../Model/nivelconcluido');
 
 class EnableLevelService {
     async insertEnableLevel(data) {
@@ -10,6 +11,12 @@ class EnableLevelService {
                 nivel: levelEnabled
             }
         })
+        const checkIfFinishLevel = await NivelConcluido.findAll({
+            where: {
+                id: data.id,
+                nivel: data.nivel
+            }
+        })
 
         if (checkIfExists.length == 0 && data.pontos >= 6) {
 
@@ -19,9 +26,26 @@ class EnableLevelService {
                 habilitar: 'Sim'
             })
 
+            if(checkIfFinishLevel.length == 0) {
+                await NivelConcluido.create({
+                    id: data.id,
+                    nivel: data.nivel,
+                    concluido: 1
+                })
+            }
+
             return insert;
+
         } else {
-            return;
+
+            if(checkIfFinishLevel.length == 0) {
+                 await NivelConcluido.create({
+                    id: data.id,
+                    nivel: data.nivel,
+                    concluido: 0
+                })
+            }
+            return checkIfFinishLevel;
         }
     }
 
