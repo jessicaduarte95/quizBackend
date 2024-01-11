@@ -8,7 +8,7 @@ class EnableLevelController {
 
         try {
             const enableLevel = await enableLevelService.insertEnableLevel(data);
-            res.status(201).json({enableLevel});
+            res.status(201).json({ enableLevel });
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: 'Erro ao inserir o nível habilitado!' })
@@ -24,6 +24,18 @@ class EnableLevelController {
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: 'Erro ao carregar níveis habilitados!' })
+        }
+    }
+
+    async getFinishLevel(req, res) {
+        const data = req.params
+
+        try {
+            const getFinishLevel = await enableLevelService.getFinishLevel(data);
+            res.status(200).json(getFinishLevel);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ message: 'Erro ao carregar níveis concluídos!' })
         }
     }
 }

@@ -23,6 +23,7 @@ app.use(PointsRouter.cadastrarPontos);
 
 app.use(EnableLevelRouter.insertEnableLevel);
 app.use(EnableLevelRouter.getEnableLevel);
+app.use(EnableLevelRouter.getFinishLevel);
 
 app.listen(5000, () => {
     console.log("Servidor Rodando!")
