@@ -7,8 +7,8 @@ class UserController {
         const data = req.body;
 
         try {
-            await userService.createUser(data);
-            return res.status(200).json();
+            const createUser = await userService.createUser(data);
+            return res.status(200).json(createUser);
         } catch (error) {
             console.error(error);
             return res.status(500).json({ message: 'Erro ao cadastrar usuário!' });
