@@ -1,4 +1,4 @@
-name: Continuos Integration 
+name: Continuous Integration 
 
 on: 
   pull_request:
@@ -6,7 +6,7 @@ on:
       ['main']
 
 jobs: 
-  continuos-integration:
+  continuous-integration:
     runs-on: ubuntu-latest
 
     steps: 
@@ -16,4 +16,4 @@ jobs:
         with: 
           node-version: 16.x
       - name: run install
-          run: npm i
+        run: npm i
