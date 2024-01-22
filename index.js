@@ -21,7 +21,7 @@ app.use(OptionsRouter.getOptions);
 app.use(OptionsRouter.insertOptions);
 
 app.use(PointsRouter.cadastrarPontos);
-
+console.log("Teste")
 app.use(EnableLevelRouter.insertEnableLevel);
 app.use(EnableLevelRouter.getEnableLevel);
 app.use(EnableLevelRouter.getFinishLevel);
