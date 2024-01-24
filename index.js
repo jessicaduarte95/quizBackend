@@ -26,6 +26,10 @@ app.use(EnableLevelRouter.insertEnableLevel);
 app.use(EnableLevelRouter.getEnableLevel);
 app.use(EnableLevelRouter.getFinishLevel);
 
+app.get('/', (req, res) => {
+    return res.json({message: 'Server is up!'});
+})
+
 app.listen(5000, () => {
     console.log("Servidor Rodando!")
 })
