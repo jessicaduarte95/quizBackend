@@ -13,6 +13,7 @@ app.use(express.json());
 
 app.use(UserRouter.cadastrarUsuario);
 app.use(UserRouter.login);
+app.use(UserRouter.checkUser);
 
 app.use(QuestionRouter.obterPerguntas);
 app.use(QuestionRouter.insertQuestion);

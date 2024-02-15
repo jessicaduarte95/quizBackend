@@ -57,6 +57,23 @@ class UserService {
             return false
         }
     }
+
+    async checkUser(data) {
+
+        const checkUser = await Usuarios.findOne({
+            where: {
+                email: data.email
+            }
+        }).then((response) => {
+            if (response != null) {
+                return true;
+            } else {
+                return false;
+            }
+        })
+
+        return checkUser;
+    }
 }
 
 module.exports = UserService
