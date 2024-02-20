@@ -74,6 +74,11 @@ class UserService {
 
         return checkUser;
     }
+
+    async changePassword(data) {
+        console.log("Chegou Reository", data);
+        return;
+    }
 }
 
 module.exports = UserService

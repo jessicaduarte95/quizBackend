@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(UserRouter.cadastrarUsuario);
 app.use(UserRouter.login);
 app.use(UserRouter.checkUser);
+app.use(UserRouter.changePassword);
 
 app.use(QuestionRouter.obterPerguntas);
 app.use(QuestionRouter.insertQuestion);
@@ -28,7 +29,7 @@ app.use(EnableLevelRouter.getEnableLevel);
 app.use(EnableLevelRouter.getFinishLevel);
 
 app.get('/', (req, res) => {
-    return res.json({message: 'Server is up!'});
+    return res.json({ message: 'Server is up!' });
 })
 
 app.listen(5000, () => {
