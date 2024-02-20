@@ -26,6 +26,30 @@ class UserController {
             res.status(500).json({ message: 'Erro ao realizar o login!' });
         }
     }
+
+    async checkUser(req, res) {
+        const data = req.body;
+
+        try {
+            const checkUser = await userService.checkUser(data);
+            return res.status(200).json(checkUser);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Erro ao checar email!' });
+        }
+    }
+
+    async changePassword(req, res) {
+        const data = req.body;
+
+        try {
+            await userService.changePassword(data);
+            return res.status(200).json();
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Erro ao atualizar a senha!' });
+        }
+    }
 }
 
 module.exports = UserController

@@ -57,6 +57,28 @@ class UserService {
             return false
         }
     }
+
+    async checkUser(data) {
+
+        const checkUser = await Usuarios.findOne({
+            where: {
+                email: data.email
+            }
+        }).then((response) => {
+            if (response != null) {
+                return true;
+            } else {
+                return false;
+            }
+        })
+
+        return checkUser;
+    }
+
+    async changePassword(data) {
+        console.log("Chegou Reository", data);
+        return;
+    }
 }
 
 module.exports = UserService
