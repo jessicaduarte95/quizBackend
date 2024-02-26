@@ -66,7 +66,7 @@ class UserService {
             }
         }).then((response) => {
             if (response != null) {
-                return true;
+                return response;
             } else {
                 return false;
             }
@@ -76,7 +76,12 @@ class UserService {
     }
 
     async changePassword(data) {
-        console.log("Chegou Reository", data);
+
+        Usuarios.update({senha: data.senha}, {
+            where: {
+              id: data.idUser
+            }
+        })
         return;
     }
 }
