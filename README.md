@@ -26,7 +26,9 @@
 
 <h2 align="center"> Diagrama do banco de dados (Database diagram) </h2>
 
-
+<div display="flex" align="center">
+  <img src="/diagram.png" alt="Diagram">
+</div>
 
 <h2 align="center"> Desenvolvedora (Developer) </h2>
 
