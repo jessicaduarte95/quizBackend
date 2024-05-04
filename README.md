@@ -2,6 +2,8 @@
 
 <h2 align="center"> Tecnologias Usadas (Technologies) </h2>
 
+- Javascript;
+
 - Node.js  (v20.11.1);
 
 - Express;
@@ -21,6 +23,10 @@
 - Rode o projeto (Run the project): npm run dev; 
 
 <p> <strong>O backend e o banco de dados foram hospedados na AWS (The database and the backend hosted on AWS). </strong></p>
+
+<h2 align="center"> Diagrama do banco de dados (Database diagram) </h2>
+
+
 
 <h2 align="center"> Desenvolvedora (Developer) </h2>
 
