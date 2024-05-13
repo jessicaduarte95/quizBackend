@@ -1,4 +1,5 @@
 const Usuarios = require('../Model/usuarios');
+const crypto = require('crypto');
 
 class UserService {
     async createUser(data) {
@@ -22,10 +23,14 @@ class UserService {
             const email = data.email.trim();
             const senha = data.senha.trim();
 
+            const hash = crypto.createHash('sha256');
+            hash.update(senha);
+            const encodedPassword = hash.digest('hex');
+
             await Usuarios.create({
                 nome: nome,
                 email: email,
-                senha: senha
+                senha: encodedPassword
             })
             return false;
         }
@@ -36,10 +41,15 @@ class UserService {
         const loginEmail = data.loginEmail.trim();
         const loginSenha = data.loginSenha.trim();
 
+        const hash = crypto.createHash('sha256');
+        hash.update(loginSenha);
+        const encodedPassword = hash.digest('hex');
+
+
         const usuarioExists = await Usuarios.findAll({
             where: {
                 email: loginEmail,
-                senha: loginSenha
+                senha: encodedPassword
             }
         }).then((response) => {
             if (response != 0) {
