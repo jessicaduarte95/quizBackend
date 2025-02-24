@@ -1,12 +1,22 @@
-const Sequelize = require('sequelize');
+const { Sequelize } = require('sequelize');
+const dbConfig = require('config').get('database');
 
-const sequelize = new Sequelize(process.env.DATABASE, process.env.USER, process.env.PASSWORD, {
-    host: process.env.Host,
-    port: 3306,
+const sequelize = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.password, {
+    host: dbConfig.host,
+    port: dbConfig.port,
     dialect: 'mysql',
     define: {
         timestamps: false
     }
-})
+});
 
-module.exports = sequelize;
+async function connect() {
+    try {
+        // await sequelize.authenticate();
+        console.log('Successfully connected to the database!');
+    } catch (error) {
+        console.error('Error connecting to the database:', error);
+    }
+}
+
+module.exports = { sequelize, connect };

@@ -1,16 +1,25 @@
-require("dotenv").config();
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const UserRouter = require("./Routes/UserRouter");
-const QuestionRouter = require("./Routes/QuestionRouter");
-const OptionsRouter = require('./Routes/OptionsRouter');
-const PointsRouter = require('./Routes/PointsRouter');
+const express           = require("express");
+const app               = express();
+const cors              = require("cors");
+const config            = require("config");
+
+// Routers
+const UserRouter        = require("./Routes/UserRouter");
+const QuestionRouter    = require("./Routes/QuestionRouter");
+const OptionsRouter     = require('./Routes/OptionsRouter');
+const PointsRouter      = require('./Routes/PointsRouter');
 const EnableLevelRouter = require('./Routes/EnableLevelRouter');
+
+// Database
+const { connect }       = require("./db");
 
 app.use(cors());
 app.use(express.json());
 
+// Check connection
+connect();
+
+// Routers
 app.use(UserRouter.cadastrarUsuario);
 app.use(UserRouter.login);
 app.use(UserRouter.checkUser);
@@ -28,10 +37,9 @@ app.use(EnableLevelRouter.insertEnableLevel);
 app.use(EnableLevelRouter.getEnableLevel);
 app.use(EnableLevelRouter.getFinishLevel);
 
-app.get('/', (req, res) => {
-    return res.json({ message: 'Server is up!' });
-})
+const PORT = config.get("server.port");
+const HOST = config.get("server.host");
 
-app.listen(5000, () => {
-    console.log("Servidor Rodando!")
+app.listen(PORT, () => {
+    console.log(`Server is runing on ${HOST}:${PORT}`)
 })

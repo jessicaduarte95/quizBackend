@@ -1,0 +1,15 @@
+{
+    "_configFile": "production.json",
+    "environment": "production",
+    "server": {
+      "host": "0.0.0.0",
+      "port": 8081
+    },
+    "database": {
+        "database": "",
+        "user": "",
+        "password": "",
+        "host": "",
+        "port": 3306
+    }
+}
