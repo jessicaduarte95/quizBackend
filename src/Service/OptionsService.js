@@ -1,5 +1,4 @@
 const Options = require('../Model/opcoes');
-const sequelize = require('../db');
 
 class OptionsService {
 	getOptionsQuestions(data) {

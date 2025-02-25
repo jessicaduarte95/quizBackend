@@ -4,14 +4,14 @@ const cors              = require("cors");
 const config            = require("config");
 
 // Routers
-const UserRouter        = require("./Routes/UserRouter");
-const QuestionRouter    = require("./Routes/QuestionRouter");
-const OptionsRouter     = require('./Routes/OptionsRouter');
-const PointsRouter      = require('./Routes/PointsRouter');
-const EnableLevelRouter = require('./Routes/EnableLevelRouter');
+const UserRouter        = require("./src/Routes/UserRouter");
+const QuestionRouter    = require("./src/Routes/QuestionRouter");
+const OptionsRouter     = require('./src/Routes/OptionsRouter');
+const PointsRouter      = require('./src/Routes/PointsRouter');
+const EnableLevelRouter = require('./src/Routes/EnableLevelRouter');
 
 // Database
-const { connect }       = require("./db");
+const { connect }       = require("./src/db");
 
 app.use(cors());
 app.use(express.json());
