@@ -6,7 +6,16 @@
   "scripts": {
     "dev": "export NODE_ENV=local-development &&  nodemon index.js",
     "prod": "export NODE_ENV=production &&  nodemon index.js",
-    "test": "jest --passWithNoTests --detectOpenHandles"
+    "test": "jest --passWithNoTests --detectOpenHandles",
+    "migrate-local": "sequelize-cli db:migrate --config config/local-development.json --env database --migrations-path ./src/db/migrations",
+    "migrate-prod": "sequelize-cli db:migrate --config config/production.json --env database --migrations-path ./src/db/migrations",
+    "generate-migration": "npx sequelize-cli migration:generate --migrations-path ./src/db/migrations --name",
+    "drop-table": "npx sequelize-cli db:migrate:undo --config config/local-development.json --env database-postgres --migrations-path ./src/db/migrations --name"
+  },
+  "sequelize": {
+    "migration-path": "./src/db/migrations",
+    "seeders-path": "./src/seeders",
+    "models-path": "./src/Model"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +27,8 @@
     "express": "^4.18.2",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.37.5"
+    "sequelize": "^6.37.5",
+    "sequelize-cli": "^6.6.2"
   },
   "devDependencies": {
     "jest": "^29.7.0",

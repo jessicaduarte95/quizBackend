@@ -11,7 +11,7 @@ const PointsRouter      = require('./src/Routes/PointsRouter');
 const EnableLevelRouter = require('./src/Routes/EnableLevelRouter');
 
 // Database
-const { connect }       = require("./src/db");
+const { connect }       = require("./src/db/db");
 
 app.use(cors());
 app.use(express.json());
