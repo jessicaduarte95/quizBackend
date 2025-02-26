@@ -1,13 +1,13 @@
-const crypto         = require('crypto');
+const bcrypt                = require('bcrypt');
 
 // Models
-const Usuarios       = require('../Model/usuarios');
+const Usuarios              = require('../Model/usuarios');
 
 // Repository
-const UserRepository = require('../Repository/UserRepository');
+const UserRepository        = require('../Repository/UserRepository');
 
 //Validator
-const { create }     = require('../Validators/UserValidator');
+const { create, login }     = require('../Validators/UserValidator');
 
 
 class UserService {
@@ -45,9 +45,7 @@ class UserService {
             }
 
             // Encoded password
-            const hash = crypto.createHash('sha256');
-            hash.update(value.password.trim());
-            const encodedPassword = hash.digest('hex');
+            const encodedPassword = await bcrypt.hash(value.password.trim(), 15);
 
             // If no user exists, it will be created
             const data = {
@@ -64,35 +62,30 @@ class UserService {
         }
     }
 
-    async login(data) {
-
-        const loginEmail = data.loginEmail.trim();
-        const loginSenha = data.loginSenha.trim();
-
-        const hash = crypto.createHash('sha256');
-        hash.update(loginSenha);
-        const encodedPassword = hash.digest('hex');
-
-
-        const usuarioExists = await Usuarios.findAll({
-            where: {
-                email: loginEmail,
-                senha: encodedPassword
+    async login(body) {
+        try {
+            // Data input validation
+            const { error, value } = login.validate(body, { abortEarly: false });
+            if (error) {
+                throw new Error(error);
             }
-        }).then((response) => {
-            if (response != 0) {
-                const dataUsuario = response[0].dataValues;
-                return dataUsuario;
-            } else {
-                return false;
-            }
-        })
 
-        if (usuarioExists) {
-            const retorno = true;
-            return [retorno, usuarioExists]
-        } else {
-            return false
+            // Find email
+            const result = await UserRepository.findOne({ email: body.email.trim()});
+            if(!result) {
+                throw new Error('email_not_found');
+            }
+
+            //Verify password
+            const password = await bcrypt.compare(value.password, result.password);
+
+            if(!password) {
+                throw new Error('password_invalid');
+            }
+
+            return result;
+        } catch (error) {
+            throw new Error(error);
         }
     }
 

@@ -26,14 +26,12 @@ class UserController {
     }
 
     async login(req, res) {
-        const data = req.body;
-
         try {
-            const loginUser = await UserService.login(data)
-            return res.status(200).json(loginUser);
+            const body = req.body;
+            const result = await UserService.login(body)
+            return res.status(200).json({ message: "login_successfully", result });
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: 'Erro ao realizar o login!' });
+            return res.status(500).json({ message: error.message || "error_login" });
         }
     }
 
