@@ -11,11 +11,11 @@ module.exports = {
         primaryKey: true
       },
       idQuestion: {
-        type: Sequelize.UUID,
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'quetions',
-          key: 'uuid'
+          model: 'questions',
+          key: 'id'
         }
       },
       level: {
@@ -23,7 +23,7 @@ module.exports = {
         allowNull: false,
       },
       correct: {
-        type: DataTypes.BOOLEAN,
+        type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: false,
       },

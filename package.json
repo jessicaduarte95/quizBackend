@@ -10,7 +10,7 @@
     "migrate-local": "sequelize-cli db:migrate --config config/local-development.json --env database --migrations-path ./src/db/migrations",
     "migrate-prod": "sequelize-cli db:migrate --config config/production.json --env database --migrations-path ./src/db/migrations",
     "generate-migration": "npx sequelize-cli migration:generate --migrations-path ./src/db/migrations --name",
-    "drop-table": "npx sequelize-cli db:migrate:undo --config config/local-development.json --env database-postgres --migrations-path ./src/db/migrations --name"
+    "drop-table": "npx sequelize-cli db:migrate:undo --config config/local-development.json --env database --migrations-path ./src/db/migrations --name"
   },
   "sequelize": {
     "migration-path": "./src/db/migrations",
