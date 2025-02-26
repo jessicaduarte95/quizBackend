@@ -19,7 +19,7 @@ class UserService {
             }
         
             // Find email
-            const result = await UserRepository.findOne({ email: data.email});
+            const result = await UserRepository.findOne({ email: data.email.trim()});
             if(!result) {
                 throw new Error('email_not_found');
             }
