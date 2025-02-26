@@ -9,8 +9,10 @@ class UserController {
             const result = await userService.createUser(body);
             return res.status(201).json({ message: "user_created_successfully", result });
         } catch (error) {
-            console.error(error);
-            return res.status(500).json({ message: error.message });
+            return res.status(500).json({ 
+                message: error.message || "error_created_user",
+                error: error.toString()
+            });
         }
     }
 
