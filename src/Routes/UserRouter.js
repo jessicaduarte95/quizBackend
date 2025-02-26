@@ -4,14 +4,14 @@ const UserController = require('../Controller/UserController');
 
 const userController = new UserController();
 
+const getUser = app.get('/user', userController.getUser);
 const createUser = app.post('/user/create', userController.createUser);
 const login = app.post('/login', userController.login);
-const checkUser = app.post('/checkUser', userController.checkUser);
 const changePassword = app.put('/changePassword', userController.changePassword);
 
 module.exports = {
+    getUser,
     createUser,
     login,
-    checkUser,
     changePassword
 };

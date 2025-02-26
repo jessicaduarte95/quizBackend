@@ -11,6 +11,25 @@ const { create }     = require('../Validators/UserValidator');
 
 
 class UserService {
+    async getUser(data) {
+        try {
+            // Email input validation
+            if(!data?.email) {
+                throw new Error('email_required');
+            }
+        
+            // Find email
+            const result = await UserRepository.findOne({ email: data.email});
+            if(!result) {
+                throw new Error('email_not_found');
+            }
+
+            return result;
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+    
     async createUser(body) {
         try {
             // Data input validation
@@ -22,7 +41,7 @@ class UserService {
             // Check if the user exists
             const countUser = await UserRepository.countUser(value);
             if(countUser > 0) {
-                throw new Error('already_registered_user')
+                throw new Error('already_registered_user');
             }
 
             // Encoded password
@@ -77,23 +96,6 @@ class UserService {
         }
     }
 
-    async checkUser(data) {
-
-        const checkUser = await Usuarios.findOne({
-            where: {
-                email: data.email
-            }
-        }).then((response) => {
-            if (response != null) {
-                return response;
-            } else {
-                return false;
-            }
-        })
-
-        return checkUser;
-    }
-
     async changePassword(data) {
 
         Usuarios.update({senha: data.senha}, {
@@ -105,4 +107,4 @@ class UserService {
     }
 }
 
-module.exports = UserService
+module.exports = new UserService();

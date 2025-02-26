@@ -1,12 +1,21 @@
 const UserService = require('../Service/UserService');
-const userService = new UserService();
 
 class UserController {
 
+    async getUser(req, res) {
+        try {
+            const body = req.body;
+            const result = await UserService.getUser(body);
+            return res.status(200).json({ message: "got_user", result });
+        } catch (error) {
+            return res.status(500).json({ message: error.message || "error_got_user" });
+        }
+    }
+    
     async createUser(req, res) {
         try {
             const body = req.body;
-            const result = await userService.createUser(body);
+            const result = await UserService.createUser(body);
             return res.status(201).json({ message: "user_created_successfully", result });
         } catch (error) {
             return res.status(500).json({ 
@@ -20,7 +29,7 @@ class UserController {
         const data = req.body;
 
         try {
-            const loginUser = await userService.login(data)
+            const loginUser = await UserService.login(data)
             return res.status(200).json(loginUser);
         } catch (error) {
             console.error(error);
@@ -28,23 +37,11 @@ class UserController {
         }
     }
 
-    async checkUser(req, res) {
-        const data = req.body;
-
-        try {
-            const checkUser = await userService.checkUser(data);
-            return res.status(200).json(checkUser);
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: 'Erro ao checar email!' });
-        }
-    }
-
     async changePassword(req, res) {
         const data = req.body;
 
         try {
-            await userService.changePassword(data);
+            await UserService.changePassword(data);
             return res.status(200).json();
         } catch (error) {
             console.error(error);
