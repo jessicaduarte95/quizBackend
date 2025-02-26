@@ -1,38 +1,47 @@
-const Usuarios = require('../Model/usuarios');
-const crypto = require('crypto');
+const crypto         = require('crypto');
+
+// Models
+const Usuarios       = require('../Model/usuarios');
+
+// Repository
+const UserRepository = require('../Repository/UserRepository');
+
+//Validator
+const { create }     = require('../Validators/UserValidator');
+
 
 class UserService {
-    async createUser(data) {
-
-        const emailExist = await Usuarios.count({
-            where: {
-                email: data.email
+    async createUser(body) {
+        try {
+            // Data input validation
+            const { error, value } = create.validate(body, { abortEarly: false });
+            if (error) {
+                throw new Error(error);
             }
-        }).then(dataEmail => {
-            if (dataEmail != 0) {
-                return true;
-            } else {
-                return false;
+
+            // Check if the user exists
+            const countUser = await UserRepository.countUser(value);
+            if(countUser > 0) {
+                throw new Error('already_registered_user')
             }
-        })
 
-        if (emailExist) {
-            return true;
-        } else {
-            const nome = data.nome.trim();
-            const email = data.email.trim();
-            const senha = data.senha.trim();
-
+            // Encoded password
             const hash = crypto.createHash('sha256');
-            hash.update(senha);
+            hash.update(value.password.trim());
             const encodedPassword = hash.digest('hex');
 
-            await Usuarios.create({
-                nome: nome,
-                email: email,
-                senha: encodedPassword
-            })
-            return false;
+            // If no user exists, it will be created
+            const data = {
+                name: value.name.trim(),
+                email: value.email.trim(),
+                password: encodedPassword
+            }
+
+            await UserRepository.createUser(data);
+
+            return;
+        } catch (error) {
+            throw new Error(error);
         }
     }
 

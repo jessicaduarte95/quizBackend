@@ -20,7 +20,7 @@ app.use(express.json());
 connect();
 
 // Routers
-app.use(UserRouter.cadastrarUsuario);
+app.use(UserRouter.createUser);
 app.use(UserRouter.login);
 app.use(UserRouter.checkUser);
 app.use(UserRouter.changePassword);

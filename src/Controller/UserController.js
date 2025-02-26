@@ -4,14 +4,13 @@ const userService = new UserService();
 class UserController {
 
     async createUser(req, res) {
-        const data = req.body;
-
         try {
-            const createUser = await userService.createUser(data);
-            return res.status(200).json(createUser);
+            const body = req.body;
+            const result = await userService.createUser(body);
+            return res.status(201).json({ message: "user_created_successfully", result });
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ message: 'Erro ao cadastrar usuário!' });
+            return res.status(500).json({ message: error.message });
         }
     }
 
