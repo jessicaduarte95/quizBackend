@@ -18,6 +18,14 @@ class UserRepository {
             }
         });
     };
+
+    async updateUser(id, data) {
+        return await UserModel.update(data, {
+            where: {
+              id: id.id
+            }
+        });
+    }
 }
 
 module.exports = new UserRepository()

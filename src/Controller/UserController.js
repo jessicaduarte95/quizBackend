@@ -35,15 +35,14 @@ class UserController {
         }
     }
 
-    async changePassword(req, res) {
-        const data = req.body;
-
+    async updatePassword(req, res) {
         try {
-            await UserService.changePassword(data);
-            return res.status(200).json();
+            const body = req.body;
+            const id = req.params;
+            await UserService.updatePassword(body, id);
+            return res.status(200).json({ message: "password_updated_successfully" });
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: 'Erro ao atualizar a senha!' });
+            return res.status(500).json({ message: error.message || "error_updated_password" });
         }
     }
 }

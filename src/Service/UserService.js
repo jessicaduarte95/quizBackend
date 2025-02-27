@@ -7,7 +7,10 @@ const Usuarios              = require('../Model/usuarios');
 const UserRepository        = require('../Repository/UserRepository');
 
 //Validator
-const { create, login }     = require('../Validators/UserValidator');
+const { 
+    create, 
+    login, 
+    updatePassword }        = require('../Validators/UserValidator');
 
 
 class UserService {
@@ -89,14 +92,31 @@ class UserService {
         }
     }
 
-    async changePassword(data) {
-
-        Usuarios.update({senha: data.senha}, {
-            where: {
-              id: data.idUser
+    async updatePassword(body, id) {
+        try {
+            // Data input validation
+            const { error, value } = updatePassword.validate(body, { abortEarly: false });
+            if (error) {
+                throw new Error(error);
             }
-        })
-        return;
+
+            // Encoded password
+            const encodedPassword = await bcrypt.hash(value.password.trim(), 15);
+
+            const data = {
+                password: encodedPassword
+            }
+
+            // Update password
+            const result = await UserRepository.updateUser(id, data);
+            if(!result) {
+                throw new Error('updated_password_failed');
+            }
+
+            return;
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 }
 

@@ -7,11 +7,11 @@ const userController = new UserController();
 const getUser = app.get('/user', userController.getUser);
 const createUser = app.post('/user/create', userController.createUser);
 const login = app.post('/user/login', userController.login);
-const changePassword = app.put('/changePassword', userController.changePassword);
+const updatePassword = app.put('/user/:id', userController.updatePassword);
 
 module.exports = {
     getUser,
     createUser,
     login,
-    changePassword
+    updatePassword
 };

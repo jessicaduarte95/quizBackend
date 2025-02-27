@@ -23,7 +23,7 @@ connect();
 app.use(UserRouter.createUser);
 app.use(UserRouter.login);
 app.use(UserRouter.getUser);
-app.use(UserRouter.changePassword);
+app.use(UserRouter.updatePassword);
 
 app.use(QuestionRouter.obterPerguntas);
 app.use(QuestionRouter.insertQuestion);
