@@ -22,14 +22,14 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      option: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       correct: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: false,
-      },
-      option: {
-        type: Sequelize.STRING,
-        allowNull: false,
       },
     })
   },
