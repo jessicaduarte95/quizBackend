@@ -37,6 +37,7 @@ class QuestionService {
                 throw new Error(error);
             }
 
+            // Insert question
             const result = await QuestionRepository.createQuestion(value);
 
             if(!result) {
