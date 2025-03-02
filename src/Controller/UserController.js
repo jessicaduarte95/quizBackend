@@ -8,7 +8,10 @@ class UserController {
             const result = await UserService.getUser(body);
             return res.status(200).json({ message: "got_user", result });
         } catch (error) {
-            return res.status(500).json({ message: error.message || "error_got_user" });
+            return res.status(500).json({ 
+                message: error.message || "error_got_user",
+                error: error.toString()
+             });
         }
     }
     
@@ -31,7 +34,10 @@ class UserController {
             const result = await UserService.login(body)
             return res.status(200).json({ message: "login_successfully", result });
         } catch (error) {
-            return res.status(500).json({ message: error.message || "error_login" });
+            return res.status(500).json({ 
+                message: error.message || "error_login",
+                error: error.toString() 
+            });
         }
     }
 
@@ -42,7 +48,10 @@ class UserController {
             await UserService.updatePassword(body, id);
             return res.status(200).json({ message: "password_updated_successfully" });
         } catch (error) {
-            return res.status(500).json({ message: error.message || "error_updated_password" });
+            return res.status(500).json({ 
+                message: error.message || "error_updated_password",
+                error: error.toString()
+             });
         }
     }
 }

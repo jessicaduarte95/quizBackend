@@ -1,6 +1,10 @@
 const UserModel = require('../Model/UserModel');
 
 class UserRepository {
+    async findById(id) {
+        return await UserModel.findById(id);
+    };
+
     async findOne(data) {
         return await UserModel.findOne({
             where: data
