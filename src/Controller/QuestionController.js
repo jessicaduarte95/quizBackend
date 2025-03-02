@@ -1,28 +1,31 @@
 const QuestionService = require('../Service/QuestionService');
-const questionService = new QuestionService();
 
 class QuestionController {
 
     async getQuestionsLevel(req, res) {
-        const data = req.body;
-
         try {
-            const questions = await questionService.getQuestionsLevel(data);
-            res.status(200).json(questions);
+            const body = req.body;
+            console.log("Bodyyy: ", body);
+            const result = await QuestionService.getQuestionsLevel(body);
+            res.status(200).json({ message: "got_question_level", result });
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: 'Erro ao buscar perguntas!' });
+            return res.status(500).json({ 
+                message: error.message || "error_got_question",
+                error: error.toString()
+            });
         }
     }
 
     async insertQuestion(req, res) {
-        const data = req.body;
         try {
-            await questionService.insertQuestion(data);
-            res.status(201).json();
+            const body = req.body;
+            const result = await QuestionService.insertQuestion(body);
+            res.status(201).json({ message: "question_created_successfully", result });
         } catch (error) {
-            console.log(error);
-            res.status(500).json({ message: 'Erro ao inserir uma nova pergunta' })
+            return res.status(500).json({ 
+                message: error.message || "error_created_question",
+                error: error.toString()
+            });
         }
     }
 }

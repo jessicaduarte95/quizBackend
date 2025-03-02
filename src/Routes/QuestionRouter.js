@@ -4,10 +4,10 @@ const QuestionController = require('../Controller/QuestionController');
 
 const questionController = new QuestionController();
 
-const obterPerguntas = app.post('/obterPerguntas', questionController.getQuestionsLevel);
-const insertQuestion = app.post('/insertQuestion', questionController.insertQuestion)
+const getQuestion = app.get('/question', questionController.getQuestionsLevel);
+const insertQuestion = app.post('/question', questionController.insertQuestion)
 
 module.exports = {
-    obterPerguntas,
+    getQuestion,
     insertQuestion
 }

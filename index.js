@@ -25,7 +25,7 @@ app.use(UserRouter.login);
 app.use(UserRouter.getUser);
 app.use(UserRouter.updatePassword);
 
-app.use(QuestionRouter.obterPerguntas);
+app.use(QuestionRouter.getQuestion);
 app.use(QuestionRouter.insertQuestion);
 
 app.use(OptionsRouter.getOptions);
