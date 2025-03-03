@@ -1,54 +1,78 @@
 const HabilitarNivel = require('../Model/habilitarnivel');
 const NivelConcluido = require('../Model/nivelconcluido');
 
+// Repository
+const EnableLevelRepository     = require('../Repository/EnableLevelRepository');
+
+//Validator
+const { 
+    findEnableLevel}            = require('../Validators/EnableLevelValidator');
+
 class EnableLevelService {
-    async insertEnableLevel(data) {
-
-        const levelEnabled = data.nivel + 1
-        const checkIfExists = await HabilitarNivel.findAll({
-            where: {
-                id: data.id,
-                nivel: levelEnabled
+    async getEnableLevel(params) {
+        try {
+            // Data input validation
+            const { error, value } = findEnableLevel.validate(params, { abortEarly: false });
+            if (error) {
+                throw new Error(error);
             }
-        })
-        const checkIfFinishLevel = await NivelConcluido.findAll({
-            where: {
-                id: data.id,
-                nivel: data.nivel
-            }
-        })
 
-        let nivelConcluido = [];
-
-        if (checkIfExists.length == 0 && data.pontos >= 6) {
-            await HabilitarNivel.create({
-                id: data.id,
-                nivel: levelEnabled,
-                habilitar: 'Sim'
+            // Got enable level
+            const result = await EnableLevelRepository.findAll({
+                id: value.id
             })
-
-            if (checkIfFinishLevel.length == 0) {
-                nivelConcluido = await NivelConcluido.create({
-                    id: data.id,
-                    nivel: data.nivel,
-                    concluido: 1
-                })
+            if(!result) {
+                throw new Error('enable_level_not_found');
             }
 
+            return result;
+        } catch (error) {
+            throw new Error(error);
         }
-
-        return nivelConcluido;
     }
 
-    async getEnableLevel(id) {
+    async insertEnableLevel(data) {
 
-        const getEnableUserLevel = HabilitarNivel.findAll({
-            where: {
-                id
-            }
-        })
+        try {
+            return;
+        } catch (error) {
+            throw new Error(error);
+        }
 
-        return getEnableUserLevel;
+        // const levelEnabled = data.nivel + 1
+        // const checkIfExists = await HabilitarNivel.findAll({
+        //     where: {
+        //         id: data.id,
+        //         nivel: levelEnabled
+        //     }
+        // })
+        // const checkIfFinishLevel = await NivelConcluido.findAll({
+        //     where: {
+        //         id: data.id,
+        //         nivel: data.nivel
+        //     }
+        // })
+
+        // let nivelConcluido = [];
+
+        // if (checkIfExists.length == 0 && data.pontos >= 6) {
+        //     await HabilitarNivel.create({
+        //         id: data.id,
+        //         nivel: levelEnabled,
+        //         habilitar: 'Sim'
+        //     })
+
+        //     if (checkIfFinishLevel.length == 0) {
+        //         nivelConcluido = await NivelConcluido.create({
+        //             id: data.id,
+        //             nivel: data.nivel,
+        //             concluido: 1
+        //         })
+        //     }
+
+        // }
+
+        // return nivelConcluido;
     }
 
     async getFinishLevel(data) {
@@ -64,4 +88,4 @@ class EnableLevelService {
     }
 }
 
-module.exports = EnableLevelService;
+module.exports = new EnableLevelService();

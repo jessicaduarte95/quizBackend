@@ -1,29 +1,30 @@
 const EnableLevelService = require('../Service/EnableLevelService');
-const enableLevelService = new EnableLevelService();
 
 class EnableLevelController {
 
-    async insertEnableLevel(req, res) {
-        const data = req.body;
-
+    async getEnableLevel(req, res) {
         try {
-            const enableLevel = await enableLevelService.insertEnableLevel(data);
-            res.status(201).json({ enableLevel });
+            const params = req.params
+            const result = await EnableLevelService.getEnableLevel(params);
+            res.status(200).json({ message: "got_enable_levels", result });
         } catch (error) {
-            console.log(error);
-            res.status(500).json({ message: 'Erro ao inserir o nível habilitado!' })
+            return res.status(500).json({ 
+                message: error.message || "error_got_enable_levels",
+                error: error.toString()
+            });
         }
     }
 
-    async getEnableLevel(req, res) {
-        const id = req.params.id
-
+    async insertEnableLevel(req, res) {
         try {
-            const getEnableUserLevel = await enableLevelService.getEnableLevel(id);
-            res.status(200).json(getEnableUserLevel);
+            const data = req.body;
+            const result = await EnableLevelService.insertEnableLevel(data);
+            res.status(201).json({ message: "created_enable_level", result });
         } catch (error) {
-            console.log(error);
-            res.status(500).json({ message: 'Erro ao carregar níveis habilitados!' })
+            return res.status(500).json({ 
+                message: error.message || "error_created_enable_level",
+                error: error.toString()
+            });
         }
     }
 
@@ -31,7 +32,7 @@ class EnableLevelController {
         const data = req.params
 
         try {
-            const getFinishLevel = await enableLevelService.getFinishLevel(data);
+            const getFinishLevel = await EnableLevelService.getFinishLevel(data);
             res.status(200).json(getFinishLevel);
         } catch (error) {
             console.log(error);

@@ -5,7 +5,6 @@ class QuestionController {
     async getQuestionsLevel(req, res) {
         try {
             const body = req.body;
-            console.log("Bodyyy: ", body);
             const result = await QuestionService.getQuestionsLevel(body);
             res.status(200).json({ message: "got_question_level", result });
         } catch (error) {

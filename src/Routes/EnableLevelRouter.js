@@ -4,12 +4,12 @@ const EnableLevelController = require('../Controller/EnableLevelController');
 
 const enableLevelController = new EnableLevelController();
 
-const insertEnableLevel = app.post('/habilitarNivel', enableLevelController.insertEnableLevel);
-const getEnableLevel = app.get('/habilitarNivel/:id', enableLevelController.getEnableLevel);
+const getEnableLevel = app.get('/enable/level/:id', enableLevelController.getEnableLevel);
+const insertEnableLevel = app.post('/enable/level', enableLevelController.insertEnableLevel);
 const getFinishLevel = app.get('/nivelConcluido/:id/:nivel', enableLevelController.getFinishLevel);
 
 module.exports = {
-    insertEnableLevel,
     getEnableLevel,
+    insertEnableLevel,
     getFinishLevel
 }
