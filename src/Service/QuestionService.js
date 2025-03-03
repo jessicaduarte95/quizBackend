@@ -7,10 +7,10 @@ const {
     create }                 = require('../Validators/QuestionValidator');
 
 class QuestionService {
-    async getQuestionsLevel(body) {
+    async getQuestionsLevel(data) {
         try {
             // Data input validation
-            const { error, value } = findQuestionByLevel.validate(body, { abortEarly: false });
+            const { error, value } = findQuestionByLevel.validate(data, { abortEarly: false });
             if (error) {
                 throw new Error(error);
             }
