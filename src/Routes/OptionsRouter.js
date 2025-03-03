@@ -4,8 +4,8 @@ const OptionsController = require('../Controller/OptionsController')
 
 const optionsController = new OptionsController();
 
-const getOptions = app.post('/obterOpcoes', optionsController.getOptionsQuestions);
-const insertOptions = app.post('/insertOptions', optionsController.insertOptions);
+const getOptions = app.get('/options/:idQuestion', optionsController.getOptionsQuestions);
+const insertOptions = app.post('/options', optionsController.insertOptions);
 
 module.exports = {
     getOptions,
