@@ -1,6 +1,3 @@
-const HabilitarNivel = require('../Model/habilitarnivel');
-const NivelConcluido = require('../Model/nivelconcluido');
-
 // Repository
 const EnableLevelRepository     = require('../Repository/EnableLevelRepository');
 
@@ -73,18 +70,6 @@ class EnableLevelService {
         // }
 
         // return nivelConcluido;
-    }
-
-    async getFinishLevel(data) {
-
-        const checkFinishLevel = NivelConcluido.findAll({
-            where: {
-                id: data.id,
-                nivel: data.nivel
-            }
-        })
-
-        return checkFinishLevel;
     }
 }
 

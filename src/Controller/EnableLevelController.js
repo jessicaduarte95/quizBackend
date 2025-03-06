@@ -27,18 +27,6 @@ class EnableLevelController {
             });
         }
     }
-
-    async getFinishLevel(req, res) {
-        const data = req.params
-
-        try {
-            const getFinishLevel = await EnableLevelService.getFinishLevel(data);
-            res.status(200).json(getFinishLevel);
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({ message: 'Erro ao carregar níveis concluídos!' })
-        }
-    }
 }
 
 module.exports = EnableLevelController;
