@@ -4,9 +4,9 @@ const PointsController = require('../Controller/PointsController');
 
 const pointsController = new PointsController();
 
-const cadastrarPontos = app.post('/cadastrarPontos', pointsController.setPointsLevel);
+const setPointsLevel = app.post('/points/:id', pointsController.setPointsLevel);
 
 
 module.exports = {
-    cadastrarPontos
+    setPointsLevel
 }

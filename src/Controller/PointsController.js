@@ -1,16 +1,17 @@
 const PointsService = require('../Service/PointsService');
-const pointsService = new PointsService();
 
 class PointsController {
     async setPointsLevel(req, res) {
-        const data = req.body;
-
         try {
-            await pointsService.setPointsLevel(data);
-            res.status(201).json();
+            const params = req.params;
+            const body = req.body;
+            const result = await PointsService.setPointsLevel(params, body);
+            res.status(201).json({ message: "set_points_level", result });
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: 'Erro ao cadastrar pontos!' });
+            return res.status(500).json({ 
+                message: error.message || "error_set_points_level",
+                error: error.toString()
+            });
         }
     }
 }

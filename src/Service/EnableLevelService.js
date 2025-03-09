@@ -16,7 +16,7 @@ class EnableLevelService {
 
             // Got enable level
             const result = await EnableLevelRepository.findAll({
-                id: value.id
+                idUser: value.id
             })
             if(!result) {
                 throw new Error('enable_level_not_found');

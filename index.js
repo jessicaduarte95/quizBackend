@@ -32,7 +32,7 @@ app.use(QuestionRouter.insertQuestion);
 app.use(OptionsRouter.getOptions);
 app.use(OptionsRouter.insertOptions);
 
-app.use(PointsRouter.cadastrarPontos);
+app.use(PointsRouter.setPointsLevel);
 
 app.use(EnableLevelRouter.insertEnableLevel);
 app.use(EnableLevelRouter.getEnableLevel);
