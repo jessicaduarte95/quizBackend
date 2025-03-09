@@ -30,7 +30,7 @@ class PointsService {
                 await PointsRepository.createPoint(data)
             } else {
                 await PointsRepository.updatePoints(
-                    { points: value.points + 1},
+                    { points: value.points },
                     {
                         idUser: value.idUser,
                         level: value.level
