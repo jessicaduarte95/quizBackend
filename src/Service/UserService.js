@@ -1,13 +1,14 @@
-const bcrypt                = require('bcrypt');
+const bcrypt             = require('bcrypt');
 
 // Repository
-const UserRepository        = require('../Repository/UserRepository');
+const UserRepository     = require('../Repository/UserRepository');
 
 //Validator
 const { 
     create, 
     login, 
-    updatePassword }        = require('../Validators/UserValidator');
+    updatePassword 
+}                        = require('../Validators/UserValidator');
 
 
 class UserService {

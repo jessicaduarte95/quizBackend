@@ -4,7 +4,8 @@ const QuestionRepository     = require('../Repository/QuestionRepository');
 //Validator
 const { 
     findQuestionByLevel,
-    create }                 = require('../Validators/QuestionValidator');
+    create 
+}                            = require('../Validators/QuestionValidator');
 
 class QuestionService {
     async getQuestionsLevel(data) {

@@ -6,6 +6,10 @@ class CompletedLevelRepository {
             where: data
         });
     };
+
+    async createCompletedLevels(data) {
+        return await CompletedLevelModel.create(data);
+    };
 }
 
 module.exports = new CompletedLevelRepository()
