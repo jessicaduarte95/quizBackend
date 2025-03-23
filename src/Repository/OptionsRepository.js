@@ -7,7 +7,7 @@ class OptionsRepository {
         });
     };
 
-    async createQuestion(data) {
+    async createOptions(data) {
         return await OptionsModel.create(data);
     };
 }

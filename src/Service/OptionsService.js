@@ -2,7 +2,10 @@
 const OptionsRepository     = require('../Repository/OptionsRepository');
 
 //Validator
-const { findOption }        = require('../Validators/OptionValidator');
+const { 
+	findOption, 
+	insertOption 
+}                           = require('../Validators/OptionValidator');
 
 class OptionsService {
 	async getOptionsQuestions(params, query) {
@@ -30,29 +33,35 @@ class OptionsService {
 		} catch (error) {
 			throw new Error(error);
 		}
-		// let option;
-
-		// if (data.level[0].nivel == 1) {
-		// 	option = data.perguntaAtual + 1;
-		// } else if (data.level[0].nivel !== 1 && data.perguntaAtual !== 9) {
-		// 	let questionOptions = data.perguntaAtual + 1;
-		// 	let number = data.level[0].nivel - 1;
-		// 	option = number.toString() + questionOptions.toString();
-		// } else if (data.perguntaAtual == 9) {
-		// 	let number = data.level[0].nivel;
-		// 	option = number.toString() + 0;
-		// }
-
-		// return Options.findAll({
-		// 	where: {
-		// 		nivel: data.level[0].nivel,
-		// 		idquestao: option
-		// 	}
-		// });
 	}
 
-	async insertOptions(data) {
+	async insertOptions(body) {
 		try {
+			// Data input validation
+            const { error, value } = insertOption.validate(body, { abortEarly: false });
+            if (error) {
+                throw new Error(error);
+            }
+
+			// Insert options
+			for (let index = 0; index < body.options.length; index++) {
+				const optionEntry = body.options[index];
+				const optionKey = Object.keys(optionEntry)[0];
+				const correctKey = Object.keys(optionEntry)[1];
+
+				const data = {
+					level: value.level,
+					idQuestion: value.question,
+					option: optionEntry[optionKey],
+        			correct: optionEntry[correctKey]
+				}
+				const resultOption = await OptionsRepository.createOptions(data);
+
+				if(!resultOption) {
+					throw new Error('created_options_failed');
+				}
+			}
+
 			return;
 		} catch (error) {
 			throw new Error(error);
