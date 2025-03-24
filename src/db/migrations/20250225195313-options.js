@@ -10,13 +10,9 @@ module.exports = {
         allowNull: false,
         primaryKey: true
       },
-      idQuestion: {
+      question: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {
-          model: 'questions',
-          key: 'id'
-        }
       },
       level: {
         type: Sequelize.INTEGER,
@@ -33,9 +29,9 @@ module.exports = {
       },
     })
 
-    const generateOptions = (idQuestion, level, options) => {
+    const generateOptions = (question, level, options) => {
       return options.map((opt, _) => ({
-        idQuestion,
+        question,
         level,
         option: opt.text,
         correct: opt.correct

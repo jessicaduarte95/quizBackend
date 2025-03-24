@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 const findOption = Joi.object({
   level: Joi.number().required(),
-  idQuestion: Joi.number().required()
+  question: Joi.number().required()
 });
 
 const insertOption = Joi.object({

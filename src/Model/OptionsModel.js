@@ -11,13 +11,9 @@ OptionsModel.init(
             allowNull: false,
             primaryKey: true
         },
-        idQuestion: {
+        question: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            references: {
-              model: 'questions',
-              key: 'id'
-            }
         },
         level: {
             type: DataTypes.INTEGER,

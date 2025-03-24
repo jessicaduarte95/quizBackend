@@ -13,7 +13,7 @@ class OptionsService {
 			// Data input validation
 			const data = {
 				level: query.level,
-				idQuestion: params.idQuestion
+				question: params.idQuestion
 			}
             const { error, value } = findOption.validate(data, { abortEarly: false });
             if (error) {
@@ -23,7 +23,7 @@ class OptionsService {
 			// Got questions
 			const result = await OptionsRepository.findAll({
 				level: value.level,
-				idQuestion: value.idQuestion
+				question: value.question
 			})
 			if(!result) {
 				throw new Error('options_not_found');
@@ -51,7 +51,7 @@ class OptionsService {
 
 				const data = {
 					level: value.level,
-					idQuestion: value.question,
+					question: value.question,
 					option: optionEntry[optionKey],
         			correct: optionEntry[correctKey]
 				}
